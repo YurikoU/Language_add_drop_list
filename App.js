@@ -1,31 +1,40 @@
 import { useState } from 'react';
 
-//名前なしimport(エントリポイントの中のコンポーネントを指定する方法)
+//名前ありimport(エントリポイントの中のコンポーネントを指定する方法)
 import { List } from './List';
+import { Form } from './Form';
 
 
 
 function App() {
 
-    //descriptionという名前のstateを宣言。
-    //useState()の返り値は、配列。返り値の配列の、一つ目の値が変数description(=state)、2つ目の値が関数setDescription。
-    //setDescription；パラメーターとして受け取った値を、descriptionに変更する。
-    const [description, setDescription] = useState('Before click');
+    //tabという名前のstateを宣言。
+    //useState()の返り値は、配列。返り値の配列の、一つ目の値が変数tab(=state)、2つ目の値が関数setTab。
+    //setTab；パラメーターとして受け取った値を、tabに変更する。
+    const [tab, setTab] = useState('list');
 
-    //descriptionを変更する、関数changeDescriptionを宣言。
-    const changeDescription = () => {
-        setDescription('After clicked!!');
-    };
+    //変数bodyの値は、条件演算子。tab === 'list'の条件が、trueなら<List />、falseなら<Form />。return()の↓と同じ。
+    //{
+    //  tab === 'list'  ?  <List />  :  <Form />
+    //}
+    // const body =  tab === 'list' ?  <List />  :  <Form />
 
 
 
     return (
         <div>
-            <List title="Languages" />
-            { description }
-            {/* ボタンをクリックすると、関数changeDescriptionを実施。stateはメモリに保存されるので、F5で初期値に戻る */}
-            {/* <button onClick={ changeDescription }>button</button> */}
-            <button onClick={ () => changeDescription() }>button</button>
+            <header>
+                <ul>
+                    {/* 関数setTab()がクリックされたら、変数tabの値を、listもしくはformに変更。 */}
+                    <li onClick={ () => setTab('list') }>list</li>
+                    <li onClick={ () => setTab('form') }>form</li>
+                </ul>
+            </header>
+            <hr />            
+            {
+                //条件演算子：変数tab === 'list'の条件が、trueなら<List />、falseなら<Form />
+                tab === 'list'  ?  <List />  :  <Form />
+            }
         </div>
     );
 }
