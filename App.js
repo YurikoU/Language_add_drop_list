@@ -3,6 +3,7 @@ import React from 'react';
 //名前なしimport(エントリポイントの中のコンポーネントを指定する方法)
 import { List } from './List';
 import { Form } from './Form';
+import {languages} from './const/languages';
 
 
 
@@ -10,12 +11,23 @@ class App extends React.Component {
     //各種state（今回はdescriptionのみ）の、初期化。
     constructor(props){
         super(props);
-        this.state = { tab: 'list' };  //変数tabの初期値を、定義。
+        this.state = { 
+            tab: 'list',
+            langs: languages
+        };  //変数tabの初期値を、定義。
     }
+
+    addLang(lang){
+        this.setState({ 
+            tab: 'list',
+            langs: [...this.state.langs, lang] 
+        });//新しい入力値を受け取ったら、配列langsに入力値を追加し、stateを更新する。
+    }
+
 
     render () {
         //stateから、変数tab, descriptionの値を取得
-        const { tab } = this.state;
+        const { tab, langs } = this.state;
 
 
         return(
@@ -34,7 +46,7 @@ class App extends React.Component {
                 <hr />
 
                 {
-                    tab === 'list' ? <List /> : <Form />
+                    tab === 'list' ? <List langs={langs} /> : <Form onAddLang={(lang) => this.addLang(lang)} />
                 }
             </>
         );
