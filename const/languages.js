@@ -8,3 +8,12 @@ export const languages = [
   'Ruby',
   'Go'
 ];
+
+
+export const getLanguage = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(languages);
+        }, 1000);
+    })
+}

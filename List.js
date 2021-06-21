@@ -1,11 +1,18 @@
 import React from 'react';
-import { languages } from './const/languages';
-
+import { useEffect } from 'react';
 
 
 //名前ありexport＜＝＝＞名前なしexport(default export)
 export const List = ({ langs }) => {
-    //変数titleの宣言：親コンポーネントAppから、titleという名前のpropsを受け取る。
+
+    useEffect(() => {
+        console.log('List.js: useEffect');
+
+        //unmountの値：useEffect()の第一引数の、返り値（return）
+        return () => {
+            console.log('List.js: useEffect: unmount');
+        }
+    })
 
     return (
         <>
