@@ -3,7 +3,7 @@ import React from 'react';
 //名前なしimport(エントリポイントの中のコンポーネントを指定する方法)
 import { List } from './List';
 import { Form } from './Form';
-import {languages} from './const/languages';
+import { getLanguages, languages } from './const/languages';
 
 
 
@@ -13,8 +13,18 @@ class App extends React.Component {
         super(props);
         this.state = { 
             tab: 'list',
-            langs: languages
+            langs: []
         };  //変数tabの初期値を、定義。
+    }
+
+    componentDidMount() {
+        console.log('App.js: componentDidMount');
+        this.fetchLanguages();
+    }
+
+    async fetchLanguages() {
+        const langs = await getLanguages();
+        this.setState({ langs });
     }
 
     addLang(lang){
