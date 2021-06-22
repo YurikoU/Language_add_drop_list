@@ -1,4 +1,35 @@
 import React from 'react';
+import styled from 'styled-components';
+import {Button} from './components/button';
+
+
+//styled-componentsでCSS実装---------------------------------------------------------------------------------------
+const Container = styled.div`
+    padding: 12px 64px;
+`
+
+const Label = styled.label`
+    display: flex;
+    color: #757575;
+    font-size: 14px;
+    font-weight: bold;
+`
+
+const Input = styled.input`
+    border-radius: 3px;
+    padding: 4px 8px;
+    border: 1px solid black
+`
+
+const ButtonContainer = styled.div`
+    margin-top: 24px;
+`
+
+const FormButton = styled(Button)`
+    width: 120px;
+`
+//End of styled-components---------------------------------------------------------------------------------------
+
 
 
 //名前ありexport＜＝＝＞名前なしexport(default export)
@@ -18,21 +49,22 @@ export class Form extends React.Component {
     render() {
         const {text} = this.state;
         return (
-            <div>
+            <Container>
                 <h4>Add New Languages</h4>
                 <form onSubmit={(event) => this.submitForm(event)} >
                     <div>
-                        <input
+                        <Label>Language</Label>
+                        <Input
                             type="text"
                             value={text}
                             onChange={(e) => this.setState({text: e.target.value})} 
                         />
                     </div>
-                    <div>
-                        <button>Add</button>
-                    </div>
+                    <ButtonContainer>
+                        <FormButton>Add</FormButton>
+                    </ButtonContainer>
                 </form>
-            </div>
+            </Container>
         )
     }
 };

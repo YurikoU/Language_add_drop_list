@@ -1,9 +1,34 @@
 import React from 'react';
+import styled from 'styled-components';
 
 //名前なしimport(エントリポイントの中のコンポーネントを指定する方法)
 import { List } from './List';
 import { Form } from './Form';
 import { getLanguages, languages } from './const/languages';
+
+
+
+//styled-componentsでCSS実装---------------------------------------------------------------------------------------
+const Header = styled.header`
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 64px 0;
+    border-bottom: 1px solid #E0E0E0;
+`
+
+const HeaderUl = styled.ul`
+    display: flex;
+    margin: 0;
+    padding: 0;
+`
+
+const HeaderLi = styled.li`
+    list-style: none;
+    padding: 4px 12px;
+    cursor: pointer;
+    border-bottom: ${ props => props.focused ? '2px solid #F44336' : 'none' };
+`
+//End of styled-components---------------------------------------------------------------------------------------
 
 
 
@@ -42,18 +67,17 @@ class App extends React.Component {
 
         return(
             <>
-                <header>
-                    <ul>
+                <Header>
+                    <HeaderUl>
                         {/* クリックしたら、関数setState()で、tabの値を変更する */}
-                        <li onClick={ () => {this.setState({tab: 'list'})} }>
+                        <HeaderLi focused={tab === 'list'} onClick={ () => {this.setState({tab: 'list'})} }>
                             list
-                        </li>
-                        <li onClick={ () => {this.setState({tab: 'form'})} }>
+                        </HeaderLi>
+                        <HeaderLi focused={tab === 'form'} onClick={ () => {this.setState({tab: 'form'})} }>
                             form
-                        </li>
-                    </ul>
-                </header>
-                <hr />
+                        </HeaderLi>
+                    </HeaderUl>
+                </Header>
 
                 {
                     tab === 'list' ? <List langs={langs} /> : <Form onAddLang={(lang) => this.addLang(lang)} />
