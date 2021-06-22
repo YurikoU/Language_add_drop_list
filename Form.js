@@ -1,5 +1,35 @@
+import styled from 'styled-components';
 import React, {useState} from 'react';
+import { Button } from './components/button';
 
+
+//styled-componentsでCSS実装---------------------------------------------------------------------------------------
+const Container = styled.div`
+    padding: 12px 64px;
+`
+
+const Label = styled.label`
+    display: flex;
+    color: #757575;
+    font-size: 14px
+    font-weight: bold;
+`
+
+const Input = styled.input`
+    border-radius: 3px;
+    padding: 4px;
+    border: 1px solid black;
+`
+
+const ButtonContainer = styled.div`
+    margin-top: 24px;
+`
+
+// 既存のコンポーネントButtonのみを、拡張して、CSS修飾する
+const FormButton = styled(Button)`
+    width: 120px;
+`
+//End of styled-components---------------------------------------------------------------------------------------
 
 
 //名前ありexport＜＝＝＞名前なしexport(default export)
@@ -11,12 +41,14 @@ export const Form = ({ onAddLang }) => {
         onAddLang(text);//親コンポーネントのApp.jsから、関数onAddLangを参照し、<input>タグの入力値をパラメータにする。
     };
 
+
     return (
-        <div>
+        <Container>
             <h4> Add New Language </h4>
             <form onSubmit={submitForm} >
                 <div>
-                    <input
+                    <Label>Language</Label>
+                    <Input
                         type="text"
                         value={text}
                         // <input>タグに変更があった場合、入力値を関数setText()に代入し、変数textを変更する。
@@ -24,9 +56,11 @@ export const Form = ({ onAddLang }) => {
                     />
                 </div>
 
-                {/* <button>にonClick()を付けない理由：①Enterで送信ができなくなる②<button>にpreventDefault()を指定できない */}
-                <button>Add</button>
+                <ButtonContainer>
+                    {/* <button>にonClick()を付けない理由：①Enterで送信ができなくなる②<button>にpreventDefault()を指定できない */}
+                    <FormButton>Add</FormButton>
+                </ButtonContainer>
             </form>
-        </div>
+        </Container>
     )
 };

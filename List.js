@@ -1,29 +1,34 @@
+import styled from 'styled-components';
 import React from 'react';
-import { useEffect } from 'react';
+
+//styled-componentsでCSS実装---------------------------------------------------------------------------------------
+const Container = styled.div`
+    padding: 12px 64px;
+`
+
+const ListItem = styled.div`
+    padding: 8px 16px;
+
+    //2番目の<div>から、実装される。
+    &:nth-child(n+2) {
+        border-top: 1px solid #D9DBDE;
+    }
+`
+//End of styled-components---------------------------------------------------------------------------------------
 
 
 //名前ありexport＜＝＝＞名前なしexport(default export)
 export const List = ({ langs }) => {
-
-    useEffect(() => {
-        console.log('List.js: useEffect');
-
-        //unmountの値：useEffect()の第一引数の、返り値（return）
-        return () => {
-            console.log('List.js: useEffect: unmount');
-        }
-    })
-
     return (
-        <>
+        <Container>
             <h2> This is a list </h2>
             {
                 // map()： 配列langsを、別の配列に変換する
                 langs.map((lang, index) => {
-                    return <div key={index.toString()}> {lang} </div>
+                    return <ListItem key={index.toString()}> {lang} </ListItem>
                 })
             }
-        </>
+        </Container>
     );
 };
 
