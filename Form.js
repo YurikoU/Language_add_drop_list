@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { Button } from './components/button';
 import { TabBodyContainer } from './components/tab-body-container';
+import { FormModal } from './FormModal';
+
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
@@ -31,11 +33,12 @@ const FormButton = styled(Button)`
 
 //名前ありexport＜＝＝＞名前なしexport(default export)
 export const Form = ({ onAddLang }) => {
-    const [text, setText] = useState('');
+    const [text, setText] = useState('');//初期状態は、入力されていないので、初期値’’。
+    const [showModal, setShowModal] = useState(false);//はじめは、モーダルは開いてないので、初期値false
 
     const submitForm = (event) => {
         event.preventDefault();//イベント発生時のページ遷移を防ぐ。
-        onAddLang(text);//親コンポーネントのApp.jsから、関数onAddLangを参照し、<input>タグの入力値をパラメータにする。
+        setShowModal(true);//イベント発生したら、モーダルが開いて、languageを追加するか聞く
     };
 
 
@@ -57,6 +60,16 @@ export const Form = ({ onAddLang }) => {
                     <FormButton>Add</FormButton>
                 </ButtonContainer>
             </form>
+            {
+                //条件式（showModal===true）が成り立つときだけ、<FormModal />を実行する。
+                showModal && 
+
+                <FormModal 
+                    confirm={() => onAddLang(text)}//親コンポーネントのApp.jsから、関数onAddLangを参照し、<input>タグの入力値をパラメータにする。
+                    cancel={() => setShowModal(false)}//モーダルを閉じる。
+                />
+            }
+
         </TabBodyContainer>
-    )
+    );
 };
