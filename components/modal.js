@@ -28,7 +28,7 @@ const Container = styled.div`
 export const Modal = (props) => {
 
     //関数Modalの返り値：Portalというインスタンス。
-    //ID名='modal-root'のHTML要素（第一引数）に対して、コンポーネントContainerを適用（第二引数）する。
+    //ID名='modal-root'のHTML要素（第一引数）の中に、コンポーネントContainer（第二引数）を埋め込む。
     return ReactDOM.createPortal(
         <Container>
             { props.children }
