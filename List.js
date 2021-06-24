@@ -1,12 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TabBodyContainer } from './components/tab-body-container';
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
-const Container = styled.div`
-    padding: 12px 64px;
-`
-
 const ListItem = styled.div`
     padding: 8px 16px;
 
@@ -30,13 +27,13 @@ export class List extends React.Component {
         const{ langs } = this.props;
 
         return (
-            <Container>
+            <TabBodyContainer title='Languages List'>
                 {
                     langs.map((lang, index) => {
                         return <ListItem key={index.toString()}> {lang} </ListItem>
                     })
                 }
-            </Container>
+            </TabBodyContainer>
         ); 
     }
 

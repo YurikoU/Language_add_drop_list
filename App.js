@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { List } from './List';
 import { Form } from './Form';
 import { getLanguages, languages } from './const/languages';
-
+import { withLoading } from './hoc/withLoading';
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
@@ -38,18 +38,8 @@ class App extends React.Component {
         super(props);
         this.state = { 
             tab: 'list',
-            langs: []
+            langs: props.data
         };  //変数tabの初期値を、定義。
-    }
-
-    componentDidMount() {
-        console.log('App.js: componentDidMount');
-        this.fetchLanguages();
-    }
-
-    async fetchLanguages() {
-        const langs = await getLanguages();
-        this.setState({ langs });
     }
 
     addLang(lang){
@@ -89,4 +79,4 @@ class App extends React.Component {
 
 }
 
-export default App;
+export default withLoading(App, getLanguages);
