@@ -10,7 +10,7 @@ export const languages = [
 ];
 
 
-export const getLanguage = () => {
+export const getLanguages = () => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(languages);

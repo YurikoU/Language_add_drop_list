@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { List } from './List';
 import { Form } from './Form';
-import { getLanguage } from './const/languages';
+import { getLanguages } from './const/languages';
+import { withLoading } from './hoc/withLoading';
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
@@ -35,24 +36,24 @@ const HeaderLi = styled.li`
 
 
 
-function App() {
+function App({ data }) {
 
     //tabという名前のstateを宣言。
     //useState()の返り値は、配列。返り値の配列の、一つ目の値が変数tab(=state)、2つ目の値が関数setTab。
     //setTab；パラメーターとして受け取った値を、tabに変更する。
     const [tab, setTab] = useState('list');
-    const [langs, setLangs] = useState([]);
+    const [langs, setLangs] = useState(data);
 
-    useEffect(() => {
-        console.log('App.js: useEffect');
-        fetchLanguages();
-    }, [langs, tab])
+    //変数langsもしくは変数tabに変化があれば、関数fetchLanguages()を実行する。
+    // useEffect(() => {
+    //     fetchLanguages();
+    // }, [langs, tab])
     //第二引数が空の配列なら、mounting時（初期時）のみ実行されて、情報変更時は実行されない。
     //なぜなら、第二引数（空の配列）が変更された時のみ、useEffect()が実行されるから。(=どの変数に依存するか、を変えられる)
 
 
     const fetchLanguages = async () => {
-        const languages = await getLanguage();
+        const languages = await getLanguages();
         setLangs(languages);
     }
 
@@ -88,4 +89,4 @@ function App() {
     );
 }
 
-export default App;
+export default withLoading(App, getLanguages);

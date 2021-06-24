@@ -1,13 +1,10 @@
-import styled from 'styled-components';
 import React, {useState} from 'react';
+import styled from 'styled-components';
 import { Button } from './components/button';
+import { TabBodyContainer } from './components/tab-body-container';
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
-const Container = styled.div`
-    padding: 12px 64px;
-`
-
 const Label = styled.label`
     display: flex;
     color: #757575;
@@ -25,7 +22,7 @@ const ButtonContainer = styled.div`
     margin-top: 24px;
 `
 
-// 既存のコンポーネントButtonのみを、拡張して、CSS修飾する
+// 既存のコンポーネントButtonを、拡張して、CSS修飾する
 const FormButton = styled(Button)`
     width: 120px;
 `
@@ -43,8 +40,7 @@ export const Form = ({ onAddLang }) => {
 
 
     return (
-        <Container>
-            <h4> Add New Language </h4>
+        <TabBodyContainer title='Add New Language'>
             <form onSubmit={submitForm} >
                 <div>
                     <Label>Language</Label>
@@ -61,6 +57,6 @@ export const Form = ({ onAddLang }) => {
                     <FormButton>Add</FormButton>
                 </ButtonContainer>
             </form>
-        </Container>
+        </TabBodyContainer>
     )
 };

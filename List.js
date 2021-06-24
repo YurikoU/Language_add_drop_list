@@ -1,11 +1,9 @@
-import styled from 'styled-components';
 import React from 'react';
+import styled from 'styled-components';
+import { TabBodyContainer } from './components/tab-body-container';
+
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
-const Container = styled.div`
-    padding: 12px 64px;
-`
-
 const ListItem = styled.div`
     padding: 8px 16px;
 
@@ -20,15 +18,14 @@ const ListItem = styled.div`
 //名前ありexport＜＝＝＞名前なしexport(default export)
 export const List = ({ langs }) => {
     return (
-        <Container>
-            <h2> This is a list </h2>
+        <TabBodyContainer title='This is a list'>
             {
                 // map()： 配列langsを、別の配列に変換する
                 langs.map((lang, index) => {
                     return <ListItem key={index.toString()}> {lang} </ListItem>
                 })
             }
-        </Container>
+        </TabBodyContainer>
     );
 };
 
