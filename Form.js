@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Button } from './components/button';
 import { TabBodyContainer } from './components/tab-body-container';
 import { FormModal } from './FormModal';
-
+import { Hint } from './Hint';
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
@@ -53,6 +53,7 @@ export const Form = ({ onAddLang }) => {
                         // <input>タグに変更があった場合、入力値を関数setText()に代入し、変数textを変更する。
                         onChange={(e) => setText(e.target.value)}
                     />
+                    <Hint />
                 </div>
 
                 <ButtonContainer>

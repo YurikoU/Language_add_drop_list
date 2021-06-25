@@ -6,7 +6,8 @@ import { List } from './List';
 import { Form } from './Form';
 import { getLanguages } from './const/languages';
 import { withLoading } from './hoc/withLoading';
-import { Modal } from './components/modal';
+
+
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
 
