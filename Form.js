@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button } from './components/button';
 import { TabBodyContainer } from './components/tab-body-container';
 import { FormModal } from './FormModal';
+import { Hint } from './Hint';
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
@@ -11,21 +12,21 @@ const Label = styled.label`
     color: #757575;
     font-size: 14px;
     font-weight: bold;
-`
+`;
 
 const Input = styled.input`
     border-radius: 3px;
     padding: 4px 8px;
     border: 1px solid black
-`
+`;
 
 const ButtonContainer = styled.div`
     margin-top: 24px;
-`
+`;
 
 const FormButton = styled(Button)`
     width: 120px;
-`
+`;
 //End of styled-components---------------------------------------------------------------------------------------
 
 
@@ -62,6 +63,7 @@ export class Form extends React.Component {
                             value={text}
                             onChange={(e) => this.setState({text: e.target.value})} 
                         />
+                        <Hint />
                     </div>
                     <ButtonContainer>
                         <FormButton>Add</FormButton>

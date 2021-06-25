@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
@@ -24,17 +23,15 @@ const Container = styled.div`
 
 
 
-//クラスModalの宣言。
-export class Modal extends React.Component {
+//コンポーネントModalの宣言。
+export const Modal = (props) => {
 
-    //クラスModalの返り値：Portalというインスタンス。
+    //関数Modalの返り値：Portalというインスタンス。
     //ID名='modal-root'のHTML要素（第一引数）の中に、コンポーネントContainer（第二引数）を埋め込む。
-    render() {
-        return ReactDOM.createPortal(
-            <Container>
-                { this.props.children }
-            </Container>,
-            modalRoot  //ID名='modal-root'のHTML要素
-        )
-    };
+    return ReactDOM.createPortal(
+        <Container>
+            { props.children }
+        </Container>,
+        modalRoot  //ID名='modal-root'のHTML要素
+    )
 };

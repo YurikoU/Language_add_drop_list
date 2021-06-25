@@ -10,7 +10,7 @@ const ListItem = styled.div`
     &:nth-child(n+2) {
         border-top: 1px solid #D9DBDE;
     }
-`
+`;
 //End of styled-components---------------------------------------------------------------------------------------
 
 

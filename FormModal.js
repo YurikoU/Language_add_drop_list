@@ -21,20 +21,16 @@ const ButtonWrapper = styled.div`
 //End of styled-components---------------------------------------------------------------------------------------
 
 
-export class FormModal extends React.Component {
-    render() {
-        const { confirm, cancel } = this.props; //propsから、パラメータcancelとconfirmを受け取る。
-
-        return (
-            <Modal>
-                <Container>
-                    <p> Are you sure to add the new language to the existing list? </p>
-                    <ButtonWrapper>
-                        <Button onClick={ cancel }> cancel </Button>
-                        <Button onClick={ confirm }> ok </Button>
-                    </ButtonWrapper>
-                </Container>
-            </Modal>
-        );
-    };
+export const FormModal = ({ confirm, cancel }) => {
+    return (
+        <Modal>
+            <Container>
+                <p> Are you sure to add the new language to the existing list? </p>
+                <ButtonWrapper>
+                    <Button onClick={ cancel }> cancel </Button>
+                    <Button onClick={ confirm }> OK </Button>
+                </ButtonWrapper>
+            </Container>
+        </Modal>
+    );
 };
