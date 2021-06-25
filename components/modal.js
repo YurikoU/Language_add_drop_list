@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 
 //HTMLのドキュメント(index.html)から、ID名='modal-root'の要素を取得。
-const modalRoot = document.getElementById('modal-root');
+const Root = document.getElementById('root');
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
@@ -32,6 +32,6 @@ export const Modal = (props) => {
         <Container>
             { props.children }
         </Container>,
-        modalRoot  //ID名='modal-root'のHTML要素
+        Root  //ID名='modal-root'のHTML要素
     )
 };

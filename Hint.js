@@ -1,5 +1,5 @@
+import React from 'react';
 import styled from 'styled-components';
-import { useEffect, useState, useRef } from 'react';
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
@@ -35,32 +35,38 @@ const PopupContainer = styled.div`
 
 
 
-export const Hint = () => {
-    //変数showPopupの定義と初期化。
-    const [showPopup, setShowPopup] = useState(false);
+export class Hint extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { showPopup: false };
+        this.ref = React.createRef();
+    }
 
-    const ref = useRef(null);
+    //this.ref.currentが存在すれば、フォーカスする。
+    componentDidUpdate() {
+        if (this.ref.current) {
+            this.ref.current.focus();
+        }
+    };
 
-    useEffect(() => {
-        //ref.current（指定したHTML要素）が存在すれば、フォーカスする。
-        if (ref.current) ref.current.focus();
-    })
 
-    return (
-        <HintContainer>
-            {/* コンポーネント<HintInner>をクリックしたら、変数showPopupがtrueに変わる。 */}
-            <HintInner onClick={() => setShowPopup(true)}> ? </HintInner>
+    render () {
+        const { showPopup } = this.state;
 
-            {
-                //変数showPopup===trueの時だけ、コンポーネント<PopupContainer>を実行する。
-                //コンポーネント<PopupContainer>からカーソルが外れたら、変数showPopupがfalseに変わる。 
-                //tabIndex：フォーカス不可の要素（<div>）をフォーカスするために、tabindex属性を設定しないといけない。
-                showPopup &&
-                <PopupContainer ref={ref} onBlur={() => setShowPopup(false)} tabIndex={0}>
-                    Please enter a language you want to add.
-                </PopupContainer>
-            }
+        return (
+            <HintContainer>
+                <HintInner onClick={() => this.setState({showPopup: true})}> ? </HintInner>
+                {
+                    //変数showPopup===trueの時だけ、コンポーネント<PopupContainer>を実行する。
+                    //コンポーネント<PopupContainer>からカーソルが外れたら、変数showPopupがfalseに変わる。 
+                    //tabIndex：フォーカス不可の要素（<div>）をフォーカスするために、tabindex属性を設定しないといけない。
+                    showPopup &&
+                    <PopupContainer ref={this.ref} onBlur={() => this.setState({showPopup: false})} tabIndex={0}>
+                        Please enter a language you want to add.
+                    </PopupContainer>
+                }
+            </HintContainer>
+        )
 
-        </HintContainer>
-    );  
+    }
 };

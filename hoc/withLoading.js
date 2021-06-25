@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 
 //styled-componentsでCSS実装---------------------------------------------------------------------------------------
 const LoadDiv = styled.div`
+    height: 100%
     padding: 36px;
+    color: ${({theme}) => theme.color};
+    background-color: ${({theme}) => theme.backgroundColor};
 `
 //End of styled-components---------------------------------------------------------------------------------------
 
@@ -14,6 +18,7 @@ export const withLoading = (WrappedComponent, fetchData) => {
     //withLoadingの返り値は、コンポーネント。
     return () => {
         const [data, setData] = useState(null);
+        const [theme] = useContext(ThemeContext);
 
         //mounting時だけ、関数fetch()を実行。
         useEffect(() => {
@@ -27,7 +32,7 @@ export const withLoading = (WrappedComponent, fetchData) => {
         }
 
         const Loading = (
-            <LoadDiv>Loading....</LoadDiv>
+            <LoadDiv theme={theme}>Loading....</LoadDiv>
         )
 
         //dataが存在するときは、コンポーネント<WrappedComponent />を表示、データが無ければ関数Loadingを表示。
